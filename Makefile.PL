@@ -161,10 +161,10 @@ version_check();
 mandatory_modules();
 optional_stash_xs();
 #optional_extras();
-#splash_images();
-#html_docs();
-#html_docstyle();
-#html_examples();
+splash_images();
+html_docs();
+html_docstyle();
+html_examples();
 write_defaults();
 
 print "\n";
