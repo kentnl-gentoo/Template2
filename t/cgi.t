@@ -49,28 +49,32 @@ sub barf {
 
 __END__
 -- test --
+[% USE scalar -%]
 [% USE cgi = CGI('id=abw&name=Andy+Wardley'); global.cgi = cgi -%]
-name: [% global.cgi.param('name') %]
+name: [% global.cgi.scalar.param('name') %]
 -- expect --
 name: Andy Wardley
 
 -- test --
-name: [% global.cgi.param('name') %]
+[% USE scalar -%]
+name: [% global.cgi.scalar.param('name') %]
 
 -- expect --
 name: Andy Wardley
 
 -- test --
-[% FOREACH key = global.cgi.param.sort -%]
-   * [% key %] : [% global.cgi.param(key) %]
+[% USE scalar -%]
+[% FOREACH key = global.cgi.multi_param.sort -%]
+   * [% key %] : [% global.cgi.scalar.param(key) %]
 [% END %]
 -- expect --
    * id : abw
    * name : Andy Wardley
 
 -- test --
-[% FOREACH key = global.cgi.param().sort -%]
-   * [% key %] : [% global.cgi.param(key) %]
+[% USE scalar -%]
+[% FOREACH key = global.cgi.multi_param().sort -%]
+   * [% key %] : [% global.cgi.scalar.param(key) %]
 [% END %]
 -- expect --
    * id : abw
